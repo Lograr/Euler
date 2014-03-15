@@ -6,8 +6,9 @@
 #include <fstream>
 
 enum class Verbosity {
-    Quiet = 0,
-    Verbose = 1
+    Console = 0,
+    Quiet = 1,
+    Verbose = 2
 };
 
 const std::string default_log_file = "log.txt";

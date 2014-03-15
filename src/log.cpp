@@ -17,6 +17,8 @@ void Log::write( std::string message, Verbosity level ) {
     if( level <= verbosity_level ) {
         if( log_stream.is_open() ) {
             log_stream << message;
+            if( level == Verbosity::Console )
+                std::cout << message;
         }
         else {
             std::cout << message;

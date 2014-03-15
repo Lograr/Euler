@@ -2,26 +2,24 @@
 
 #define ss std::to_string
 
-void calculate( Log *log, int number ) {
-    int multiples_three_sum;
-    int multiples_five_sum;
+void calculate( Log *log, int max_number ) {
+    int fibonacci_sum;
 
-    for( int i = 1; i < number; i++ ) {
-        if( i % 3 == 0 ) {
-            log->write( ss( i ) + " is a multiple of 3.\n", Verbosity::Verbose );
-            multiples_three_sum += i;
-        } else if( i % 5 == 0 ) {
-            log->write( ss( i ) + " is a multiple of 5.\n", Verbosity::Verbose );
-            multiples_five_sum += i;
+    int last_number = 1;
+    int next_number = 2;
+    int i = 0;
+    while( i < max_number ) {
+        next_number = last_number;
+        last_number = i;
+        if( i % 2 == 0 ) {
+            log->write( ss( i ) + " is an even Fibonacci number.\n", Verbosity::Verbose );
+            fibonacci_sum += i;
         }
+        i = last_number + next_number;
     }
 
-    std::cout << "Sum of all multiples of 3 and 5 below " << ss( number ) << " is "
-              << multiples_five_sum + multiples_three_sum << ".\n";
-    log->write( "Sum of all multiples of 3 below " + ss( number ) + " is " 
-               + ss( multiples_three_sum ) + ".\n" );
-    log->write( "Sum of all multiples of 5 below " + ss( number ) + " is "
-               + ss( multiples_five_sum ) + ".\n" );
+    log->write( "Sum of all even Fibonacci numbers up to " + ss( max_number ) + " is " 
+               + ss( fibonacci_sum ) + ".\n", Verbosity::Console );
 }
 
 void loop( Log *log ) {
